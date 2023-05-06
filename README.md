@@ -2,6 +2,8 @@
 
 Provides a quick and simple PHP and HTML front-end to OpenAI's ChatGPT.
 
+![ChatGPT Front-End](https://user-images.githubusercontent.com/87952/236643403-b5b1a497-b3fe-4c2e-a602-e8134644f05a.png)
+
 ## Requirements
 
 * A functional web server with PHP 5.4.0 or above
