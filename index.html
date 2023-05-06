@@ -19,18 +19,26 @@
 
         section#chatlog {
             border: 1px solid #4b5a60;
+            text-align: left;
         }
 
         div.user, div.assistant {
             margin: 0 1rem 1rem 1rem;
+            padding: 0.5rem;
         }
 
         div.user {
-            text-align: left;
+            background-color: #b5dbf2;
+            margin-right: 2rem;
         }
 
         div.assistant {
-            text-align: right;
+            background-color: #b5f2ce;
+            margin-left: 2rem;
+        }
+
+        input#submit {
+            margin-left: 1rem;
         }
     </style>
 </head>
@@ -42,7 +50,7 @@
     <section id="chatbox">
         <form id="chat">
             <input id="message" type="text" />
-            <input type="submit" value="Send chat" />
+            <input id="submit" type="submit" value="Send chat" />
         </form>
     </section>
 </body>
