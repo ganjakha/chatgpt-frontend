@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ChatGPT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section id="chatlog">
+    </section>
+    <section id="chatbox">
+        <form id="chat">
+            <input id="message" type="text" />
+            <input type="submit" value="Send chat" />
+        </form>
+    </section>
+</body>
+
+<script type="text/javascript">
+    var chat = {
+        history: []
+    };
+
+    $('form#chat').submit(function(e) {
+        e.preventDefault();
+
+        var message = $('input#message').val();
+
+        $('#chatlog').append(
+            '<div class="user">' + message + '</div>'
+        );
+
+        chat.history.push(
+            {
+                'role': 'user',
+                'content': message
+            }
+        );
+
+        $.post('chat.php', {'chat_history': chat.history}, function(data) {
+            chat.history.push(
+                {
+                    'role': 'assistant',
+                    'content': data.chat_reply
+                }
+            );
+
+            console.log(chat.history);
+
+            $('#chatlog').append(
+                '<div class="assistant">' + data.chat_reply + '</div>'
+            );
+        });
+    });
+</script>
+</html>
