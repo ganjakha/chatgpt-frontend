@@ -1,6 +1,6 @@
 # A ChatGPT Front-End
 
-Provides a simple HTML and PHP front-end to OpenAI's ChatGPT.
+Provides a quick and simple PHP and HTML front-end to OpenAI's ChatGPT.
 
 ## Requirements
 
@@ -12,7 +12,7 @@ Provides a simple HTML and PHP front-end to OpenAI's ChatGPT.
 
 Copy all files to a web server with PHP support
 
-Run `composer install` in the root path.
+Run `composer install` in the directory you copied the files to.
 
 In `chat.php` replace `YOUR API KEY` with your OpenAI API key.
 
