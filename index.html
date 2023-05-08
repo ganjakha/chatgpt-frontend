@@ -69,6 +69,7 @@
         $('#chatlog').append(
             '<div class="user rounded">' + message + '</div>'
         );
+        $('#chatlog').scrollTop(99999);
 
         chat.history.push(
             {
@@ -88,6 +89,7 @@
             $('#chatlog').append(
                 '<div class="assistant rounded">' + data.chat_reply + '</div>'
             );
+            $('#chatlog').scrollTop(99999);
         });
     });
 </script>
