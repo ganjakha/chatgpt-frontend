@@ -4,25 +4,34 @@ require 'vendor/autoload.php';
 
 $chat_history = $_POST['chat_history'];
 
-// Convert chat messages to array of objects that OpenAI can use.
+// Convert chat messages to array of objects that ChatGPT can use.
 $messages = [];
 foreach ($chat_history as $history) {
     $messages[] = (object) $history;
 }
 
-$api = new OpenAI\OpenAIChat('YOUR API KEY');
+// Use the unofficial API endpoint and the free API key
+$api_url = 'https://ngoctuanai-gpt4api.hf.space/api/openai/chat/completions';
+$api_key = 'free';
 
 $chat_reply = '';
 
 try {
-    $response = $api->create('gpt-3.5-turbo', $messages);
+    // Create a HTTP client with the API key as a header
+    $client = new GuzzleHttp\Client(['headers' => ['x-api-key' => $api_key]]);
 
-    // Get the chat reply from the API response.
-    $message = current(reset($response));
+    // Send a POST request to the API with the chat messages as JSON data
+    $response = $client->post($api_url, ['json' => $messages]);
+
+    // Parse the response body as JSON
+    $data = json_decode($response->getBody(), true);
+
+    // Get the chat reply from the data
+    $message = current(reset($data));
     if (!empty($message)) {
-        $chat_reply = $message->content;
+        $chat_reply = $message['content'];
     }
-} catch (OpenAI\OpenAIException $e) {
+} catch (Exception $e) {
     $chat_reply = $e->getMessage();
 }
 
